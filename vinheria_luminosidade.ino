@@ -311,7 +311,7 @@ void loop() {
   lcd.print("%     "); // Espaço extra para apagar valores antigos
 
   // Verifica a faixa de luminosidade e aciona LEDs/buzzer/mensagem correspondente
-  if (luminosidade <= 30) {
+  if (luminosidade <= 10) {
     // Ambiente OK
     
     digitalWrite(ledVerde, HIGH);
@@ -321,7 +321,7 @@ void loop() {
     lcd.setCursor(0, 1);
     lcd.print("Ambiente OK    "); // Mensagem de ambiente ideal
 
-  } else if (luminosidade > 30 && luminosidade <= 60) {
+  } else if (luminosidade > 10 && luminosidade <= 20) {
     // Nível de Alerta
     digitalWrite(ledVerde, LOW);
     digitalWrite(ledAmarelo, HIGH);
