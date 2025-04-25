@@ -182,9 +182,9 @@ byte ok4[8] = {
 
 // Definição dos pinos dos sensores e atuadores
 const int ldrPin = A0;           // Sensor de luminosidade (LDR) no pino analógico A0
-const int ledVerde = 7;          // LED verde no pino digital 7
+const int ledVerde = 9;          // LED verde no pino digital 7
 const int ledAmarelo = 8;        // LED amarelo no pino digital 9
-const int ledVermelho = 9;       // LED vermelho no pino digital 8
+const int ledVermelho = 7;       // LED vermelho no pino digital 8
 const int buzzer = 6;            // Buzzer (alarme sonoro) no pino digital 6
 
 void setup() {
