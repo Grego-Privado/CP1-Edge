@@ -183,8 +183,8 @@ byte ok4[8] = {
 // Definição dos pinos dos sensores e atuadores
 const int ldrPin = A0;           // Sensor de luminosidade (LDR) no pino analógico A0
 const int ledVerde = 7;          // LED verde no pino digital 7
-const int ledAmarelo = 9;        // LED amarelo no pino digital 9
-const int ledVermelho = 8;       // LED vermelho no pino digital 8
+const int ledAmarelo = 8;        // LED amarelo no pino digital 9
+const int ledVermelho = 9;       // LED vermelho no pino digital 8
 const int buzzer = 6;            // Buzzer (alarme sonoro) no pino digital 6
 
 void setup() {
@@ -293,9 +293,8 @@ void setup() {
 
 
   Serial.begin(9600); // Inicia comunicação serial para depuração (monitoramento)
-
-
 }
+
 
 void loop() {
   // Lê o valor da luminosidade do ambiente através do LDR
@@ -314,6 +313,7 @@ void loop() {
   // Verifica a faixa de luminosidade e aciona LEDs/buzzer/mensagem correspondente
   if (luminosidade <= 30) {
     // Ambiente OK
+    
     digitalWrite(ledVerde, HIGH);
     digitalWrite(ledAmarelo, LOW);
     digitalWrite(ledVermelho, LOW);
@@ -326,20 +326,25 @@ void loop() {
     digitalWrite(ledVerde, LOW);
     digitalWrite(ledAmarelo, HIGH);
     digitalWrite(ledVermelho, LOW);
+    
     tone(buzzer, 1000); // Toca buzzer em 1kHz
-    delay(3000); // Buzzer toca por 3 segundos
+    delay(50); // Buzzer toca por 0,05 segundos
+    
     noTone(buzzer); // Desliga o buzzer
+    
     lcd.setCursor(0, 1);
-    lcd.print("Niv. de Alerta "); // Mensagem de alerta
+    lcd.print("Niv. de Alerta"); // Mensagem de alerta
 
   } else {
     // Problema grave de luminosidade
     digitalWrite(ledVerde, LOW);
     digitalWrite(ledAmarelo, LOW);
     digitalWrite(ledVermelho, HIGH);
-    tone(buzzer, 1000); // Buzzer contínuo
+    tone(buzzer, 10000); // Buzzer
+    delay(500);
+    noTone(buzzer); // Desliga o buzzer
     lcd.setCursor(0, 1);
-    lcd.print("Problema Lum.  "); // Mensagem de problema grave
+    lcd.print("Luz critica!"); // Mensagem de problema grave
   }
 
   delay(500); // Aguarda meio segundo antes de repetir
